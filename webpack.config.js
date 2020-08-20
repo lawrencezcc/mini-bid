@@ -1,8 +1,9 @@
 const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = (env) => {
   return {
-    entry: "./src/index.js",
+    entry: "./src/index.jsx",
     output: {
       filename: "main.js",
       path: path.resolve(__dirname, "dist"),
@@ -20,13 +21,22 @@ module.exports = (env) => {
       ],
     },
     resolve: {
-      extensions: [".js", ".jsx", ".json"]
+      extensions: [".js", ".jsx", ".json"],
     },
     devServer: {
       publicPath: "/dist/",
       contentBase: path.join(__dirname, "public"),
       port: 8800,
-      hot: true
-    }
+      hot: true,
+    },
+    devtool: "source-map",
+    plugins: [
+      new HtmlWebpackPlugin({
+        title: "Mini Bid",
+        filename: path.resolve(__dirname, "public/index.html"),
+        reactWrapperId: "app",
+        template: path.resolve(__dirname, "src/pages/template/index.html"),
+      }),
+    ],
   };
 };
