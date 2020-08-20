@@ -2,6 +2,7 @@
 2. write basic reusable components
     - input
     - tab
+    - modal
     - list-item
     - btn
     - sidebar
